@@ -8,7 +8,7 @@
 (defn congruent? [m n modulus]
   (let [result (/ (- m n) modulus)]
     (= (int result) result)))
- 
+
 (defn ln [n]
   (. Math (log n)))
 
@@ -16,7 +16,18 @@
   (/ (ln n) (ln base)))
 
 (defn mod [n modulus]
-  (. Math (abs (- (* (int (/ n modulus)) n) modulus))))
+  (. Math (abs (- n (*  (int (/ n modulus)) modulus)))))
+
+(defn gcd
+  "Returns the greatest common divisor of a and b"
+  [a b]
+  (let [bigger (max a b)
+	smaller (min a b)]
+    (print (str bigger " = " smaller "(" (int (/ bigger smaller)) ") + " (mod bigger smaller) "\n"))
+    (if (congruent? bigger 0 smaller)
+      smaller
+      (gcd smaller (mod bigger smaller))))) 
+
 
 (defn legendre [a p]
   "Returns the legendre symbol (a|p) assuming p is prime"
@@ -29,3 +40,8 @@
 	  0
 	  (if (congruent? euler-criterion -1 p)
 	    -1))))))
+
+(defn rel-prime? 
+  "Returns t if a and b are relatively prime"
+  [a b]
+  (= (gcd a b) 1))
