@@ -1,1 +1,1 @@
-Number Theory library for clojure. So far exponentiation (expt), congruency (congruent?), log (ln and log), modulus (mod) and the Legendre Symbol (legendre) written so far.
+Number Theory library for clojure. So far exponentiation (expt), congruency (congruent?), log (ln and log), modulus (mod) and the Legendre Symbol (legendre) written.
